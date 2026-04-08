@@ -58,7 +58,7 @@ let dragSrcIdx  = null;
 const q = query(playlistCol, orderBy('order', 'asc'));
 onSnapshot(q,
   snapshot => {
-    fbStatus.textContent = '● Firebase 연결됨';
+    fbStatus.textContent = '● 연결됨';
     fbStatus.className   = 'fb-status ok';
 
     const currentVideoId = queue[currentIdx]?.id ?? null;
