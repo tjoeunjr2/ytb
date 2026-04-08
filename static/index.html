@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YT Player — Ad Free</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="logo">YT.<span>PLAY</span></div>
+    <div class="input-row">
+      <input
+        class="url-input"
+        id="urlInput"
+        type="text"
+        placeholder="YouTube URL 붙여넣기 (youtu.be/... 또는 youtube.com/watch?v=...)"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button class="add-btn" id="addBtn">+ 추가</button>
+    </div>
+    <div class="fb-status sync" id="fbStatus">● 연결 중...</div>
+  </header>
+
+  <!-- ── PLAYER ── -->
+  <main class="player-area">
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="empty-player" id="emptyPlayer">
+        <div class="icon">▶</div>
+        <div>재생목록에 YouTube 링크를 추가하세요</div>
+      </div>
+      <video id="videoEl" controls style="display:none"></video>
+    </div>
+
+    <div class="now-playing" id="nowPlaying">
+      <img class="np-thumb" id="npThumb" src="" alt="" style="display:none">
+      <div class="np-thumb-placeholder" id="npThumbPh"></div>
+      <div class="np-info">
+        <div class="np-title empty" id="npTitle">재생 중인 영상 없음</div>
+        <div class="np-channel" id="npChannel">—</div>
+      </div>
+    </div>
+
+    <div class="status-bar" id="statusBar"></div>
+  </main>
+
+  <!-- ── QUEUE ── -->
+  <aside class="queue-panel">
+    <div class="queue-header">
+      <span class="queue-title">재생목록</span>
+      <div class="queue-meta">
+        <span class="sort-hint">⠿ 드래그로 순서 변경</span>
+        <span class="queue-count" id="queueCount">0개</span>
+      </div>
+    </div>
+    <div class="queue-list" id="queueList">
+      <div class="empty-queue">아직 영상이 없어요.<br>위에서 YouTube 링크를 추가하세요.</div>
+    </div>
+  </aside>
+
+  <!-- ── CONTROLS ── -->
+  <footer class="controls-bar">
+    <button class="ctrl-btn"    onclick="window._prevTrack()">⏮ 이전</button>
+    <button class="ctrl-btn primary" id="playPauseBtn" onclick="window._togglePlayPause()">⏸ 일시정지</button>
+    <button class="ctrl-btn"    onclick="window._nextTrack()">다음 ⏭</button>
+    <button class="ctrl-btn"    id="autoplayBtn" onclick="window._toggleAutoplay()">자동재생 ON</button>
+    <button class="ctrl-btn"    id="loopBtn"     onclick="window._toggleLoop()">반복 OFF</button>
+    <div class="volume-row">
+      <span class="vol-label">VOL</span>
+      <input type="range" id="volSlider" min="0" max="1" step="0.05" value="1"
+             oninput="window._setVolume(this.value)">
+    </div>
+  </footer>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
